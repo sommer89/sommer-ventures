@@ -11,6 +11,8 @@
   --tukd-l: #00ded1;
   --fo-d: #14663a;
   --fo-l: #33c26b;
+  /* Backdrop of the Football Owner screenshots, so device shots sit on their own colour */
+  --fo-mint: #d8f0e2;
 
   --maxw: 940px;
 }
@@ -72,6 +74,17 @@ nav .links a {
 }
 
 nav .links a:hover { color: var(--fg); }
+
+nav .links a.get {
+  color: #fff;
+  background: linear-gradient(135deg, var(--fo-d), var(--fo-l));
+  padding: 8px 16px;
+  border-radius: 999px;
+  font-weight: 600;
+  margin: -8px 0;
+}
+
+nav .links a.get:hover { color: #fff; opacity: .9; }
 
 /* ---------- Hero ---------- */
 
@@ -290,6 +303,132 @@ p:last-child { margin-bottom: 0; }
   text-transform: uppercase; color: var(--muted);
 }
 
+/* ---------- App landing hero (Football Owner) ---------- */
+
+.app-hero {
+  display: grid;
+  grid-template-columns: 1fr 330px;
+  gap: 56px;
+  align-items: center;
+  padding: 56px 0 72px;
+}
+
+.app-hero .icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 17px;
+  display: block;
+  margin-bottom: 22px;
+  box-shadow: 0 8px 24px rgba(0,0,0,.14);
+}
+
+.app-hero h1 { font-size: 48px; margin: 0 0 18px; max-width: 14ch; }
+.app-hero .sub { font-size: 19px; }
+
+.tag {
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--fo-d);
+  background: var(--fo-mint);
+  padding: 5px 12px;
+  border-radius: 999px;
+  margin-bottom: 20px;
+}
+
+@media (prefers-color-scheme: dark) {
+  .tag { color: #b6f0cd; background: rgba(51,194,107,.16); }
+}
+
+/* Primary call to action */
+
+.get-btn {
+  display: inline-block;
+  margin-top: 28px;
+  background: linear-gradient(135deg, var(--fo-d), var(--fo-l));
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 600;
+  padding: 14px 28px;
+  border-radius: 999px;
+  box-shadow: 0 10px 26px rgba(20,102,58,.28);
+  transition: transform .2s ease;
+}
+
+.get-btn:hover { transform: translateY(-2px); }
+
+.meta {
+  color: var(--muted);
+  font-size: 14px;
+  margin: 14px 0 0;
+}
+
+/* ---------- Device screenshots ---------- */
+
+/* The shots are transparent around the bezel, so the phone sits straight on the page */
+.shot img {
+  width: 100%;
+  display: block;
+  filter: drop-shadow(0 18px 34px rgba(0,0,0,.22));
+}
+
+@media (prefers-color-scheme: dark) {
+  /* The bezel is close to the page colour in dark mode — outline it faintly */
+  .shot img {
+    filter: drop-shadow(0 0 1px rgba(255,255,255,.3))
+            drop-shadow(0 18px 34px rgba(0,0,0,.6));
+  }
+}
+
+/* ---------- Alternating feature rows ---------- */
+
+.feature {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: 64px;
+  align-items: center;
+  margin-bottom: 72px;
+}
+
+.feature:last-child { margin-bottom: 0; }
+
+/* Every other row puts the screenshot on the left. The column widths have to be
+   swapped too, or the shot lands in the wide text column. */
+.feature.flip { grid-template-columns: 300px 1fr; }
+.feature.flip .shot { order: -1; }
+
+.feature h2 {
+  font-size: 30px;
+  margin: 0 0 14px;
+  letter-spacing: -0.03em;
+  max-width: 18ch;
+}
+
+.feature p { color: var(--muted); font-size: 17px; max-width: 48ch; }
+
+/* ---------- Smaller feature cards ---------- */
+
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+
+.grid .card {
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  padding: 26px;
+  background: var(--soft);
+}
+
+.grid .card h3 {
+  margin: 0 0 8px;
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+}
+
+.grid .card p { color: var(--muted); font-size: 15px; line-height: 1.6; margin: 0; }
+
 /* ---------- Callout ---------- */
 
 .callout {
@@ -346,8 +485,18 @@ footer {
   .app { grid-template-columns: 1fr; gap: 24px; padding: 32px; }
   .app img { width: 92px; height: 92px; border-radius: 21px; }
   .app .status { position: static; display: inline-block; margin-bottom: 14px; }
-  .two-col, .company, .pillars { grid-template-columns: 1fr; }
+  .two-col, .company, .pillars, .grid { grid-template-columns: 1fr; }
   .page-head { flex-direction: column; align-items: flex-start; gap: 18px; padding: 44px 0 32px; }
   .page-head h1 { font-size: 32px; }
   .support { padding: 24px; }
+
+  .app-hero { grid-template-columns: 1fr; gap: 40px; padding: 40px 0 56px; }
+  .app-hero h1 { font-size: 34px; }
+
+  /* Stack the rows and always lead with the copy, so the flip order is dropped */
+  .feature, .feature.flip { grid-template-columns: 1fr; gap: 28px; margin-bottom: 56px; }
+  .feature.flip .shot { order: 0; }
+  .feature h2 { font-size: 25px; }
+
+  .shot { max-width: 300px; }
 }
