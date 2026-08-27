@@ -14,9 +14,14 @@ apps/football-owner/            Football Owner — description + support
 apps/football-owner/privacy/    Football Owner — privacy policy
 assets/styles.css               all styling, light + dark
 assets/apps/                    app icons
+assets/apps/football-owner/     Football Owner screenshots
 404.html                        fallback page
 CNAME                           custom domain
+app-ads.txt                     AdMob authorized sellers. Do not move or delete.
 ```
+
+`app-ads.txt` must stay at the domain root, or Google stops verifying that Football
+Owner's ad inventory is genuine. One line per authorized ad network.
 
 Tukd is not hosted here — it has its own site at <https://tukd.app>.
 
