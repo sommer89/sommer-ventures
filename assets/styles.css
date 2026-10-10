@@ -13,6 +13,18 @@
   --fo-l: #33c26b;
   /* Backdrop of the Football Owner screenshots, so device shots sit on their own colour */
   --fo-mint: #d8f0e2;
+  --momo-d: #463ea3;
+  --momo-l: #8b83e8;
+  --momo-soft: #ebe9fb;
+
+  /* Brand of the app page being shown: buttons and the tag. Football Owner by default,
+     an app page overrides it with a class on <body> (see .momo below). */
+  --brand-d: var(--fo-d);
+  --brand-l: var(--fo-l);
+  --brand-soft: var(--fo-mint);
+  --brand-glow: rgba(20,102,58,.28);
+  --brand-tag-dark: #b6f0cd;
+  --brand-tag-bg-dark: rgba(51,194,107,.16);
 
   --maxw: 940px;
 }
@@ -26,6 +38,20 @@
     --soft: #171a1f;
     --accent: #4fd8cd;
   }
+}
+
+body.momo {
+  --brand-d: var(--momo-d);
+  --brand-l: var(--momo-l);
+  --brand-soft: var(--momo-soft);
+  --brand-glow: rgba(70,62,163,.3);
+  --brand-tag-dark: #d4d0fa;
+  --brand-tag-bg-dark: rgba(139,131,232,.18);
+  --accent: #534ab7;
+}
+
+@media (prefers-color-scheme: dark) {
+  body.momo { --accent: #a49ef0; }
 }
 
 * { box-sizing: border-box; }
@@ -77,7 +103,7 @@ nav .links a:hover { color: var(--fg); }
 
 nav .links a.get {
   color: #fff;
-  background: linear-gradient(135deg, var(--fo-d), var(--fo-l));
+  background: linear-gradient(135deg, var(--brand-d), var(--brand-l));
   padding: 8px 16px;
   border-radius: 999px;
   font-weight: 600;
@@ -198,6 +224,7 @@ p:last-child { margin-bottom: 0; }
 
 .app.tukd { background: linear-gradient(135deg, var(--tukd-d), var(--tukd-l)); }
 .app.fo   { background: linear-gradient(135deg, var(--fo-d), var(--fo-l)); }
+.app.momo { background: linear-gradient(135deg, var(--momo-d), var(--momo-l)); }
 
 .app img {
   width: 128px;
@@ -331,15 +358,15 @@ p:last-child { margin-bottom: 0; }
   font-weight: 700;
   letter-spacing: 0.12em;
   text-transform: uppercase;
-  color: var(--fo-d);
-  background: var(--fo-mint);
+  color: var(--brand-d);
+  background: var(--brand-soft);
   padding: 5px 12px;
   border-radius: 999px;
   margin-bottom: 20px;
 }
 
 @media (prefers-color-scheme: dark) {
-  .tag { color: #b6f0cd; background: rgba(51,194,107,.16); }
+  .tag { color: var(--brand-tag-dark); background: var(--brand-tag-bg-dark); }
 }
 
 /* Primary call to action */
@@ -347,14 +374,14 @@ p:last-child { margin-bottom: 0; }
 .get-btn {
   display: inline-block;
   margin-top: 28px;
-  background: linear-gradient(135deg, var(--fo-d), var(--fo-l));
+  background: linear-gradient(135deg, var(--brand-d), var(--brand-l));
   color: #fff;
   text-decoration: none;
   font-size: 16px;
   font-weight: 600;
   padding: 14px 28px;
   border-radius: 999px;
-  box-shadow: 0 10px 26px rgba(20,102,58,.28);
+  box-shadow: 0 10px 26px var(--brand-glow);
   transition: transform .2s ease;
 }
 
@@ -383,6 +410,33 @@ p:last-child { margin-bottom: 0; }
   }
 }
 
+/* The character on Momo's page: a transparent illustration on a soft disc, no device frame */
+.mascot {
+  background: var(--brand-soft);
+  border-radius: 50%;
+  aspect-ratio: 1;
+  display: grid;
+  place-items: center;
+}
+
+.mascot img { width: 78%; display: block; }
+
+@media (prefers-color-scheme: dark) {
+  .mascot { background: var(--brand-tag-bg-dark); }
+}
+
+/* "Coming soon" in place of a store button */
+.soon {
+  display: inline-block;
+  margin-top: 28px;
+  border: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 600;
+  padding: 12px 24px;
+  border-radius: 999px;
+}
+
 /* ---------- Alternating feature rows ---------- */
 
 .feature {
@@ -398,7 +452,7 @@ p:last-child { margin-bottom: 0; }
 /* Every other row puts the screenshot on the left. The column widths have to be
    swapped too, or the shot lands in the wide text column. */
 .feature.flip { grid-template-columns: 300px 1fr; }
-.feature.flip .shot { order: -1; }
+.feature.flip .shot, .feature.flip .mascot { order: -1; }
 
 .feature h2 {
   font-size: 30px;
@@ -445,6 +499,7 @@ p:last-child { margin-bottom: 0; }
 
 ul { padding-left: 22px; margin: 0 0 18px; }
 li { margin: 0 0 10px; }
+.prose li { color: var(--muted); }
 
 /* ---------- Support box ---------- */
 
@@ -495,8 +550,8 @@ footer {
 
   /* Stack the rows and always lead with the copy, so the flip order is dropped */
   .feature, .feature.flip { grid-template-columns: 1fr; gap: 28px; margin-bottom: 56px; }
-  .feature.flip .shot { order: 0; }
+  .feature.flip .shot, .feature.flip .mascot { order: 0; }
   .feature h2 { font-size: 25px; }
 
-  .shot { max-width: 300px; }
+  .shot, .mascot { max-width: 300px; }
 }

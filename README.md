@@ -12,9 +12,12 @@ index.html                      the company
 apps/index.html                 the software we build
 apps/football-owner/            Football Owner — description + support
 apps/football-owner/privacy/    Football Owner — privacy policy
+apps/momo/                      Momo — description + support (Danish)
+apps/momo/privacy/              Momo — privacy policy (Danish)
 assets/styles.css               all styling, light + dark
 assets/apps/                    app icons
 assets/apps/football-owner/     Football Owner screenshots
+assets/apps/momo/               Momo character poses
 404.html                        fallback page
 CNAME                           custom domain
 app-ads.txt                     AdMob authorized sellers. Do not move or delete.
