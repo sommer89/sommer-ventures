@@ -13,8 +13,8 @@ apps/index.html                 the software we build
 apps/football-owner/            Football Owner — description + support
 apps/football-owner/privacy/    Football Owner — privacy policy (the app links here)
 apps/football-owner/terms/      Football Owner — terms of use (the app links here)
-apps/momo/                      Momo — description + support (Danish)
-apps/momo/privacy/              Momo — privacy policy (Danish)
+apps/momo/                      Momo — forwards to https://momo-app.dk/ (Momo's own site, repo momo-website)
+apps/momo/privacy/              Momo — forwards to https://momo-app.dk/privatliv/
 assets/styles.css               all styling, light + dark
 assets/apps/                    app icons
 assets/apps/football-owner/     Football Owner screenshots
